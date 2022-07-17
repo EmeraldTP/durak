@@ -21,7 +21,8 @@ jobs:
     - name: Upload
       uses: actions/checkout@v1
     - name: Main
-      run: ls -hl
-           g++ --version
+      run: |
+        ls -hl
+        g++ --version
       
      
