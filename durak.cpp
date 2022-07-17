@@ -1,14 +1,17 @@
 #include <iostream>
+#include <string>
 #include "table.h"
 using namespace std;
 
-int kartid[36];
-int nrkarta =1;
+
 class Logic
 {
   private:
+  int nrkarta =1;
+
   
   public:
+  int kartid[36];
   
   
       void Lshuffle() {
@@ -40,14 +43,37 @@ class Logic
     // cout << "\n";
     }
 
-    void Player1(){
-
+    string Player1G(){
+      string pl1textout;
+       Table Table;
+      pl1textout =pl1textout + "                    ";
+      for (int i = 1;i<=6; i++){
+        nrkarta++;
+        if ( i == 4){pl1textout =pl1textout + "                    ";}
+        pl1textout =pl1textout +Table.kart(kartid[nrkarta])+ " ";
+        if ( i == 3){pl1textout =pl1textout + "\n";}}
+      pl1textout =pl1textout + "\n";
+      return pl1textout;
     }
-    void Player2(){
 
+    string Player2G(){
+      string pl2textout;
+      Table Table;
+      pl2textout=pl2textout+ "                    ";
+      for (int i = 1;i<=6; i++){
+        nrkarta++;
+        if ( i == 4){pl2textout=pl2textout+"                    ";}
+        pl2textout=pl2textout+Table.kart(kartid[nrkarta])+ " ";
+        if ( i == 3){pl2textout=pl2textout+"\n";}}
+      pl2textout=pl2textout+"\n";
+      return pl2textout;
     }
-    void kaloda(){
-
+    string kalodaG(){
+      string kazirka;
+      Table Table;
+      nrkarta++;
+      kazirka=kazirka + "\n\n\n"+ to_string(36-nrkarta) + " " +Table.kart(kartid[nrkarta])+  "       ============================================" + "\n\n\n\n";
+      return kazirka;
     }
 };
 
@@ -55,34 +81,17 @@ class Grafic
 {
   public:
 
-    void Player1(){
+    void Player1(string drawing){
       
-      Logic Logic;
-      Table Table;
-      cout << "                    ";
-      for (int i = 1;i<=6; i++){
-        nrkarta++;
-        if ( i == 4){cout << "                    ";}
-        cout << Table.kart(kartid[nrkarta])<< " ";
-        if ( i == 3){cout << "\n";}}
-      cout << "\n";
+      cout << drawing;
+
     }
-    void kaloda(){
-      Table Table;
-      nrkarta++;
-      cout <<"\n\n\n" <<Table.kart(kartid[nrkarta])<< "           ============================================" << "\n\n\n\n";
+    void kaloda(string drawing){
+      cout << drawing;
     }
 
-    void Player2(){
-      Logic Logic;
-      Table Table;
-      cout << "                    ";
-      for (int i = 1;i<=6; i++){
-        nrkarta++;
-        if ( i == 4){cout << "                    ";}
-        cout << Table.kart(kartid[nrkarta])<< " ";
-        if ( i == 3){cout << "\n";}}
-      cout << "\n";
+    void Player2(string drawing){
+      cout << drawing;
     }
    
 
@@ -94,23 +103,21 @@ class Grafic
     }
     
     void display() {
-      Logic Logic;
       system("clear");
-      Logic.Lshuffle();
-       for (int i = 1; i <= 36; i++){
-         //cout << Logic.kartidsh[i-1] << " ";
-      }
-      Player1();
-      kaloda();
-      Player2();
     }
 };
 
 int main() {
-   Logic t1;
-    Grafic t;
-   // t1.Lshuffle();
-    t.display();
-   
-    
+  //int nrkarta,int* kartid
+  Logic Logic;
+  Grafic Grafic;
+  Logic.Lshuffle();
+  Grafic.display();
+  
+  string player1string = Logic.Player1G();
+  string player2string = Logic.Player2G();
+  string kolodastring = Logic.kalodaG();
+  Grafic.Player1(player1string);
+  Grafic.kaloda(kolodastring);
+  Grafic.Player2(player2string);
 }
