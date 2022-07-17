@@ -23,7 +23,7 @@ jobs:
     - name: Main
       run: |
         ls -hl
-        lscpu
+        free -h
         g++ durak.cpp table.h -o durak -lsqlite3
     - name: run
       run: ./durak
